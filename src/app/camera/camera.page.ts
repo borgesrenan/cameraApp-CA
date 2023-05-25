@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { HttpClient } from '@angular/common/http';
-import { LoadingController, Platform, ToastController } from '@ionic/angular';
+import { LoadingController, Platform, ToastController, NavController } from '@ionic/angular';
 
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 
@@ -28,7 +28,8 @@ export class CameraPage implements OnInit {
     private plt: Platform,
     private http: HttpClient,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private navCtrl: NavController
   ) { }
 
   async ngOnInit() {
@@ -100,13 +101,13 @@ export class CameraPage implements OnInit {
         resultType: CameraResultType.Base64,
         source: CameraSource.Camera,
       });
-  
+
       const newImage: LocalFile = {
         name: new Date().getTime().toString(),
         data: 'data:image/jpeg;base64,' + image.base64String,
         path: '', // Add a default or placeholder value for the path property
       };
-  
+
       // Add the newImage object to your images array or perform any other required logic
       this.images.push(newImage);
     } catch (error) {
@@ -222,5 +223,9 @@ export class CameraPage implements OnInit {
     });
     this.loadFiles();
     this.presentToast('File removed.');
+  }
+
+  goBack() {
+    this.navCtrl.back();
   }
 }

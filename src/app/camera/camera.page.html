@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Image Upload</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,10 +18,10 @@
         <ion-img [src]="file.data"></ion-img>
       </ion-thumbnail>
       <ion-label class="ion-text-wrap">{{ file.name }}</ion-label>
-      <ion-button slot="end" fill="clear" (click)="startUpload(file)">
+      <ion-button slot="end" fill="clear" (click)="startUpload(file)" class="upload-button">
         <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
       </ion-button>
-      <ion-button slot="end" fill="clear" (click)="deleteImage(file)">
+      <ion-button slot="end" fill="clear" (click)="deleteImage(file)" class="delete-button">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
     </ion-item>
@@ -25,13 +30,19 @@
 
 <ion-footer>
   <ion-toolbar color="primary">
-    <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
-      <ion-icon slot="start" name="image"></ion-icon>
-      Choose a Picture
-    </ion-button>
-    <ion-button fill="clear" expand="full" color="light" (click)="takePhoto()">
-      <ion-icon slot="start" name="camera"></ion-icon>
-      Take a Photo
-    </ion-button>
+    <ion-row class="button-row">
+      <ion-col size="6" class="button-col">
+        <ion-button fill="clear" expand="full" color="light" (click)="selectImage()" class="choose-button">
+          <ion-icon slot="start" name="image"></ion-icon>
+          Choose a Picture
+        </ion-button>
+      </ion-col>
+      <ion-col size="6" class="button-col">
+        <ion-button fill="clear" expand="full" color="light" (click)="takePhoto()" class="camera-button">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Take a Photo
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>
