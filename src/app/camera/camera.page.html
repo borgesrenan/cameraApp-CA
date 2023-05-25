@@ -1,33 +1,37 @@
 <ion-header>
-	<ion-toolbar color="primary">
-		<ion-title> Image Upload </ion-title>
-	</ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-title>Image Upload</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-	<h3 *ngIf="images.length == 0" class="ion-padding ion-text-center">Please Select Image!</h3>
+  <h3 *ngIf="images.length == 0" class="ion-padding ion-text-center">Please Select an Image!</h3>
 
-	<ion-list>
-		<ion-item *ngFor="let file of images; let i = index">
-			<ion-thumbnail slot="start">
-				<ion-img [src]="file.data"></ion-img>
-			</ion-thumbnail>
-			<ion-label class="ion-text-wrap"> {{ file.name }} </ion-label>
-			<ion-button slot="end" fill="clear" (click)="startUpload(file)">
-				<ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
-			</ion-button>
-			<ion-button slot="end" fill="clear" (click)="deleteImage(file)">
-				<ion-icon slot="icon-only" name="trash"></ion-icon>
-			</ion-button>
-		</ion-item>
-	</ion-list>
+  <ion-list>
+    <ion-item *ngFor="let file of images; let i = index">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="file.data"></ion-img>
+      </ion-thumbnail>
+      <ion-label class="ion-text-wrap">{{ file.name }}</ion-label>
+      <ion-button slot="end" fill="clear" (click)="startUpload(file)">
+        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" fill="clear" (click)="deleteImage(file)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <ion-footer>
-	<ion-toolbar color="primary">
-		<ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
-			<ion-icon slot="start" name="camera"></ion-icon>
-			Select Image
-		</ion-button>
-	</ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-button fill="clear" expand="full" color="light" (click)="selectImage()">
+      <ion-icon slot="start" name="image"></ion-icon>
+      Choose a Picture
+    </ion-button>
+    <ion-button fill="clear" expand="full" color="light" (click)="takePhoto()">
+      <ion-icon slot="start" name="camera"></ion-icon>
+      Take a Photo
+    </ion-button>
+  </ion-toolbar>
 </ion-footer>

@@ -92,6 +92,28 @@ export class CameraPage implements OnInit {
     toast.present();
   }
 
+  async takePhoto() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Base64,
+        source: CameraSource.Camera,
+      });
+  
+      const newImage: LocalFile = {
+        name: new Date().getTime().toString(),
+        data: 'data:image/jpeg;base64,' + image.base64String,
+        path: '', // Add a default or placeholder value for the path property
+      };
+  
+      // Add the newImage object to your images array or perform any other required logic
+      this.images.push(newImage);
+    } catch (error) {
+      console.error('Error taking photo:', error);
+    }
+  }
+
   async selectImage() {
     const image = await Camera.getPhoto({
       quality: 90,
