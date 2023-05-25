@@ -1,0 +1,45 @@
+ion-content {
+  --background: #ffffff; /* background color  */
+}
+
+.welcome-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.question-section {
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Align buttons from left to right */
+  margin-top: 20px;
+  gap: 1px; /* Adjust the gap between buttons */
+}
+
+ion-button {
+  flex: 0 0 auto; /* Prevent buttons from stretching */
+  width: 30%; /* Remove fixed button width */
+  height: 60px;
+  --background: #000000; /* Background color */
+  --color: #ffffff; /* Button text color */
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+ion-button:first-child {
+  margin-right: 2%; /* Remove spacing on the right side of the first button */
+}
+
+ion-button:last-child {
+  margin-left: 2%; /* Remove spacing on the left side of the last button */
+}
+
+ion-content,
+h1,
+h2,
+p,
+ion-button {
+  color: #000000; 
+}

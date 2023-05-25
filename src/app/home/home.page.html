@@ -1,0 +1,25 @@
+<ion-content class="ion-padding">
+  <div class="welcome-section">
+    <h1>Welcome to my Camera App</h1>
+    <h2>Renan</h2>
+    <p>Student ID: 2022307</p>
+  </div>
+
+  <div class="question-section">
+    <p>Please choose an option:</p>
+    <div class="button-container">
+      <ion-button expand="block" size="small" color="primary" (click)="goToCameraPage()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Take Photo
+      </ion-button>
+      <ion-button expand="block" size="small" color="primary" (click)="goToGalleryPage()">
+        <ion-icon slot="start" name="images"></ion-icon>
+        Gallery
+      </ion-button>
+      <ion-button expand="block" size="small" color="primary" (click)="goToFavoritesPage()">
+        <ion-icon slot="start" name="heart"></ion-icon>
+        Favorites
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
