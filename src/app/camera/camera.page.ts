@@ -7,6 +7,8 @@ import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera
 
 import { finalize } from 'rxjs/operators';
 
+import { Router } from '@angular/router';
+
 
 const IMAGE_DIR = 'stored-images';
 
@@ -29,7 +31,9 @@ export class CameraPage implements OnInit {
     private http: HttpClient,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private router: Router
+    
   ) { }
 
   async ngOnInit() {
@@ -157,7 +161,7 @@ export class CameraPage implements OnInit {
 
   openGallery() {
     // Navigate to the GalleryPage when the button is clicked
-    this.navCtrl.navigateForward('/gallery', {
+    this.router.navigate(['/gallery'], {
       state: {
         images: this.images
       }
@@ -255,18 +259,25 @@ export class CameraPage implements OnInit {
       directory: Directory.Data,
       path: file.path
     });
-    this.loadFiles();
+    
+    // Remove the image from the images array
+    const index = this.images.findIndex((image) => image.name === file.name);
+    if (index !== -1) {
+      this.images.splice(index, 1);
+    }
+  
     this.presentToast('File removed.');
-
+  
     // Check if the file is in the favorites
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     const updatedFavorites = favorites.filter((favorite: LocalFile) => favorite.name !== file.name);
-
+  
     // If the favorites list has changed, update the local storage
     if (favorites.length !== updatedFavorites.length) {
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     }
   }
+  
 
   goBack() {
     this.navCtrl.back();
