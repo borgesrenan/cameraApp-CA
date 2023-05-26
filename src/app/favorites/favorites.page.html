@@ -1,13 +1,32 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>favorites</ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Favorites</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favorites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="grid-container">
+    <ion-grid class="photo-grid">
+      <ion-row class="ion-align-items-stretch">
+        <ng-container *ngFor="let file of favoriteImages">
+          <ion-col size="6" size-md="4" size-lg="3" class="photo-col">
+            <ion-item class="photo-item">
+              <ion-thumbnail slot="start">
+                <ion-img [src]="file.data"></ion-img>
+              </ion-thumbnail>
+              <ion-label class="ion-text-wrap">{{ file.name }}</ion-label>
+            </ion-item>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" color="danger" (click)="deleteAllImages()">
+      Delete All Images
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

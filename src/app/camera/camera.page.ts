@@ -116,21 +116,33 @@ export class CameraPage implements OnInit {
   }
 
   async selectImage() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Photos // Camera, Photos or Prompt!
-    });
-
-    if (image) {
-      this.saveImage(image)
-    }
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = (event: Event) => {
+      const target = event.target as HTMLInputElement;
+      const file = target.files?.[0];
+      if (file) {
+        this.saveImage(file);
+      }
+    };
+    input.click();
   }
 
-  // Create a new file from a capture image
-  async saveImage(photo: Photo) {
-    const base64Data = await this.readAsBase64(photo);
+
+
+  // Create a new file from a captured image or a selected file
+  async saveImage(photo: Photo | File) {
+    let base64Data: string;
+
+    if ('base64String' in photo) {
+      // Photo from Camera Plugin
+      base64Data = 'data:image/jpeg;base64,' + photo.base64String;
+    } else {
+      // Photo from File input
+      const file = photo as File;
+      base64Data = await this.readAsBase64FromFile(file);
+    }
 
     const fileName = new Date().getTime() + '.jpeg';
     const savedFile = await Filesystem.writeFile({
@@ -140,8 +152,20 @@ export class CameraPage implements OnInit {
     });
 
     // Reload the file list
-    // Improve by only loading for the new image and unshifting array!
     this.loadFiles();
+  }
+
+  // Helper function to read the selected file as base64
+  private async readAsBase64FromFile(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Data = reader.result as string;
+        resolve(base64Data);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   }
 
   // https://ionicframework.com/docs/angular/your-first-app/3-saving-photos
@@ -217,12 +241,22 @@ export class CameraPage implements OnInit {
   }
 
   async deleteImage(file: LocalFile) {
+    // Delete the file from the camera page
     await Filesystem.deleteFile({
       directory: Directory.Data,
       path: file.path
     });
     this.loadFiles();
     this.presentToast('File removed.');
+  
+    // Check if the file is in the favorites
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    const updatedFavorites = favorites.filter((favorite: LocalFile) => favorite.name !== file.name);
+  
+    // If the favorites list has changed, update the local storage
+    if (favorites.length !== updatedFavorites.length) {
+      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+    }
   }
 
   goBack() {
@@ -238,21 +272,18 @@ export class CameraPage implements OnInit {
   }
 
   // Add a photo to favorites or remove it if already a favorite
-  addToFavorites(file: LocalFile) {
-    const index = this.favorites.findIndex((favorite) => favorite.name === file.name);
-    if (index !== -1) {
-      // Already a favorite, remove it
-      this.favorites.splice(index, 1);
-    } else {
-      // Not a favorite, add it
-      this.favorites.push(file);
-    }
+  async addToFavorites(file: LocalFile) {
+    // Add the file to favorites in local storage
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+    favorites.push(file);
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    // Show a toast or any other feedback to the user
   }
 
-  // Navigate to the Favorites page
+  // ...
+
   goToFavoritesPage() {
-    // Pass the favorite photos to the Favorites page
-    localStorage.setItem('favoriteImages', JSON.stringify(this.favorites));
     this.navCtrl.navigateForward('/favorites');
   }
-}
+} 

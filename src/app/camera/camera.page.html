@@ -24,11 +24,12 @@
       <ion-button slot="end" fill="clear" (click)="deleteImage(file)" class="delete-button">
         <ion-icon slot="icon-only" name="trash"></ion-icon>
       </ion-button>
-      <ion-button slot="end" fill="clear" (click)="addToFavorites(file)" class="favorite-button">
-        <ion-icon slot="icon-only" [name]="isFavorite(file) ? 'heart' : 'heart-outline'"></ion-icon>
+      <ion-button slot="end" fill="clear" (click)="addToFavorites(file)" [disabled]="isFavorite(file)">
+        <ion-icon slot="icon-only" name="heart"></ion-icon>
       </ion-button>
     </ion-item>
   </ion-list>
+</ion-content>
 
 <ion-footer>
   <ion-toolbar color="primary">
