@@ -228,4 +228,31 @@ export class CameraPage implements OnInit {
   goBack() {
     this.navCtrl.back();
   }
+
+  // Add the 'favorites' property to hold the favorite photos
+  favorites: LocalFile[] = [];
+
+  // Check if a file is marked as a favorite
+  isFavorite(file: LocalFile): boolean {
+    return this.favorites.some((favorite) => favorite.name === file.name);
+  }
+
+  // Add a photo to favorites or remove it if already a favorite
+  addToFavorites(file: LocalFile) {
+    const index = this.favorites.findIndex((favorite) => favorite.name === file.name);
+    if (index !== -1) {
+      // Already a favorite, remove it
+      this.favorites.splice(index, 1);
+    } else {
+      // Not a favorite, add it
+      this.favorites.push(file);
+    }
+  }
+
+  // Navigate to the Favorites page
+  goToFavoritesPage() {
+    // Pass the favorite photos to the Favorites page
+    localStorage.setItem('favoriteImages', JSON.stringify(this.favorites));
+    this.navCtrl.navigateForward('/favorites');
+  }
 }
