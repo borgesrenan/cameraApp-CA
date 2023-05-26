@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Favorites</ion-title>
+  <ion-toolbar color="primary" class="header-toolbar">
+    <ion-title class="header-title">Favorites</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +23,12 @@
 <ion-footer>
   <ion-toolbar>
     <ion-button expand="full" color="danger" (click)="deleteAllImages()">
+      <ion-icon name="trash"></ion-icon>
       Delete All Images
+    </ion-button>
+    <ion-button expand="full" color="secondary" (click)="goBack()">
+      <ion-icon name="home"></ion-icon>
+      Home Page
     </ion-button>
   </ion-toolbar>
 </ion-footer>

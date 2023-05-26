@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { LocalFile } from 'src/app/camera/camera.page';
 import { AlertController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -11,7 +14,10 @@ import { AlertController } from '@ionic/angular';
 export class FavoritesPage {
   favoriteImages: LocalFile[] = [];
 
-  constructor(private alertCtrl: AlertController) { }
+  constructor(
+    private alertCtrl: AlertController,
+    private navCtrl: NavController,
+    private router: Router) { }
 
   ngOnInit() {
     this.loadFavorites();
@@ -45,5 +51,9 @@ export class FavoritesPage {
     });
 
     await confirm.present();
+  }
+
+  goBack() {
+    this.router.navigateByUrl('/home');
   }
 }

@@ -24,7 +24,7 @@ export class GalleryPage implements OnInit {
   }
 
   goBack() {
-    this.navCtrl.back();
+    this.router.navigateByUrl('/home');
   }
 
   deleteAll() {
