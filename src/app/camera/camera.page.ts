@@ -273,15 +273,19 @@ export class CameraPage implements OnInit {
 
   // Add a photo to favorites or remove it if already a favorite
   async addToFavorites(file: LocalFile) {
-    // Add the file to favorites in local storage
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    favorites.push(file);
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-
-    // Show a toast or any other feedback to the user
+    const index = this.favorites.findIndex((favorite) => favorite.name === file.name);
+  
+    if (index !== -1) {
+      // File already exists in favorites, remove it
+      this.favorites.splice(index, 1);
+    } else {
+      // File does not exist in favorites, add it
+      this.favorites.push(file);
+    }
+  
+    // Update the local storage with the updated favorites array
+    localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
-
-  // ...
 
   goToFavoritesPage() {
     this.navCtrl.navigateForward('/favorites');

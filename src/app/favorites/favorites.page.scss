@@ -1,33 +1,32 @@
-.grid-container {
-    display: flex;
-    justify-content: center;
+ion-content {
+  --background: #ffffff;
+}
+page-favorites {
+
+  .image-container {
+      min-height: 200px;
+      background-size: cover;
   }
-  
-  .photo-grid {
-    width: 100%;
-    max-width: 800px;
+
+  @media (min-width: 0px) {
+      .images {
+          column-count: 2;
+      }
   }
-  
-  .photo-col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
+
+  @media (min-width: 420px) {
+      .images {
+          column-count: 3;
+      }
   }
-  
-  .photo-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+
+  @media (min-width: 720px) {
+      .images {
+          column-count: 4;
+      }
   }
-  
-  .photo-item ion-thumbnail {
-    width: 100%;
-    max-height: 200px;
+
+  .one-image {
+      margin: 2px;
   }
-  
-  .photo-item ion-label {
-    margin-top: 0.5rem;
-  }
-  
+}
