@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Gallery</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let image of images">
+        <ion-thumbnail>
+          <ion-img [src]="image.data"></ion-img>
+        </ion-thumbnail>
+        <ion-label class="ion-text-wrap">{{ image.name }}</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

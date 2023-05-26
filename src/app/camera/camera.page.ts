@@ -10,7 +10,7 @@ import { finalize } from 'rxjs/operators';
 
 const IMAGE_DIR = 'stored-images';
 
-interface LocalFile {
+export interface LocalFile {
   name: string;
   path: string;
   data: string;
