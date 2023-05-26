@@ -1,27 +1,43 @@
 ion-content {
-  --background: #ffffff; /* background color  */
+  --background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.welcome-section {
+.grid-container {
   text-align: center;
-  margin-bottom: 2rem;
+  color: #040404;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.welcome-section h1 {
+.grid-container h1,
+.grid-container h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.grid-container h1 {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #333;
+  color: #040404;
 }
 
-.welcome-section h2 {
+.grid-container h2 {
   font-size: 1.8rem;
-  color: #666;
+  color: #040404;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
 }
 
-.welcome-section p {
-  font-size: 1.2rem;
-  color: #888;
+.grid-container h2 ion-icon {
+  margin-right: 1rem;
 }
+
 
 .question-section {
   text-align: center;
@@ -29,40 +45,34 @@ ion-content {
 }
 
 .question-section p {
-  font-size: 1.2rem;
-  color: #666;
+  font-size: 2rem;
+  color: #0f0f0f;
   margin-bottom: 1rem;
 }
 
 .button-container {
   display: flex;
-  justify-content: space-between; /* Align buttons from left to right */
+  justify-content: space-between;
+  /* Align buttons from left to right */
   margin-top: 20px;
-  gap: 1px; /* Adjust the gap between buttons */
+  gap: 1px;
+  /* Adjust the gap between buttons */
 }
 
 ion-button {
-  flex: 0 0 auto; /* Prevent buttons from stretching */
-  width: 30%; /* Remove fixed button width */
+  flex: 0 0 auto;
+  width: 30%;
   height: 60px;
-  --background: #000000; /* Background color */
-  --color: #ffffff; /* Button text color */
+  --background: #000000;
+  --color: #ffffff;
   --padding-start: 0;
   --padding-end: 0;
+  font-weight: bold;
+  /* Add font-weight property */
+  font-size: 1.1rem;
+  /* Adjust the font size as desired */
 }
 
-ion-button:first-child {
-  margin-right: 2%; /* Remove spacing on the right side of the first button */
-}
-
-ion-button:last-child {
-  margin-left: 2%; /* Remove spacing on the left side of the last button */
-}
-
-ion-content,
-h1,
-h2,
-p,
 ion-button {
-  color: #000000; 
+  font-size: 1.3rem;
 }

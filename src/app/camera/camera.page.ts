@@ -306,8 +306,11 @@ export class CameraPage implements OnInit {
     // Update the local storage with the updated favorites array
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
-
-  goToFavoritesPage() {
+  openFavorites() {
     this.navCtrl.navigateForward('/favorites');
+  }
+
+  goToHomePage(){
+    this.navCtrl.navigateForward('/home');
   }
 } 
