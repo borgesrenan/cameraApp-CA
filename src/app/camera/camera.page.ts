@@ -152,7 +152,16 @@ export class CameraPage implements OnInit {
     });
 
     // Reload the file list
-    this.loadFiles();
+    await this.loadFiles();
+  }
+
+  openGallery() {
+    // Navigate to the GalleryPage when the button is clicked
+    this.navCtrl.navigateForward('/gallery', {
+      state: {
+        images: this.images
+      }
+    });
   }
 
   // Helper function to read the selected file as base64
@@ -248,11 +257,11 @@ export class CameraPage implements OnInit {
     });
     this.loadFiles();
     this.presentToast('File removed.');
-  
+
     // Check if the file is in the favorites
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     const updatedFavorites = favorites.filter((favorite: LocalFile) => favorite.name !== file.name);
-  
+
     // If the favorites list has changed, update the local storage
     if (favorites.length !== updatedFavorites.length) {
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
@@ -274,7 +283,7 @@ export class CameraPage implements OnInit {
   // Add a photo to favorites or remove it if already a favorite
   async addToFavorites(file: LocalFile) {
     const index = this.favorites.findIndex((favorite) => favorite.name === file.name);
-  
+
     if (index !== -1) {
       // File already exists in favorites, remove it
       this.favorites.splice(index, 1);
@@ -282,7 +291,7 @@ export class CameraPage implements OnInit {
       // File does not exist in favorites, add it
       this.favorites.push(file);
     }
-  
+
     // Update the local storage with the updated favorites array
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }

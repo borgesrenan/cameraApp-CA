@@ -34,18 +34,25 @@
 <ion-footer>
   <ion-toolbar color="primary">
     <ion-row class="button-row">
-      <ion-col size="6" class="button-col">
+      <ion-col size="2" class="button-col">
         <ion-button fill="clear" expand="full" color="light" (click)="selectImage()" class="choose-button">
           <ion-icon slot="start" name="image"></ion-icon>
           Choose a Picture
         </ion-button>
       </ion-col>
-      <ion-col size="6" class="button-col">
+      <ion-col size="2" class="button-col">
         <ion-button fill="clear" expand="full" color="light" (click)="takePhoto()" class="camera-button">
           <ion-icon slot="start" name="camera"></ion-icon>
           Take a Photo
         </ion-button>
       </ion-col>
+      <ion-col size="2" class="button-col">
+        <ion-button fill="clear" expand="full" color="light" (click)="openGallery()" class="images">
+          <ion-icon slot="start" name="images"></ion-icon>
+          Open Gallery
+        </ion-button>
+      </ion-col>
     </ion-row>
+
   </ion-toolbar>
 </ion-footer>

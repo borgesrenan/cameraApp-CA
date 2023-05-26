@@ -11,8 +11,32 @@
         <ion-thumbnail>
           <ion-img [src]="image.data"></ion-img>
         </ion-thumbnail>
-        <ion-label class="ion-text-wrap">{{ image.name }}</ion-label>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-content class="ion-padding">
+  <div class="grid-container">
+    <ion-grid class="photo-grid">
+      <ion-row class="ion-align-items-stretch">
+        <ng-container *ngFor="let file of images">
+          <ion-col size="6" size-md="4" size-lg="3" class="photo-col">
+            <ion-item class="photo-item">
+              <ion-img [src]="file.data" class="photo-img"></ion-img>
+            </ion-item>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" color="danger" (click)="goBack()">
+      Go Back
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

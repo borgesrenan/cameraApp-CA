@@ -11,10 +11,7 @@
         <ng-container *ngFor="let file of favoriteImages">
           <ion-col size="6" size-md="4" size-lg="3" class="photo-col">
             <ion-item class="photo-item">
-              <ion-thumbnail slot="start">
-                <ion-img [src]="file.data"></ion-img>
-              </ion-thumbnail>
-              <ion-label class="ion-text-wrap">{{ file.name }}</ion-label>
+              <ion-img [src]="file.data" class="photo-img"></ion-img>
             </ion-item>
           </ion-col>
         </ng-container>
