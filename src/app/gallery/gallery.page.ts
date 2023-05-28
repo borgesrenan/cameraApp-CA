@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ImageService } from '../../service/image.service';
 
 @Component({
   selector: 'app-gallery',
@@ -13,13 +14,16 @@ export class GalleryPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private navCtrl: NavController
-  ) { }
+    private navCtrl: NavController,
+    @Inject(ImageService) private imageService: ImageService) { }
 
   ngOnInit() {
+    this.images = this.imageService.getImages();
     const navigation = this.router.getCurrentNavigation();
     if (navigation && navigation.extras && navigation.extras.state) {
-      this.images = navigation.extras.state['images'] || [];
+      const newImages = navigation.extras.state['images'] || [];
+      this.images = [...this.images, ...newImages];
+      this.imageService.setImages(this.images);
     }
   }
 
@@ -38,5 +42,6 @@ export class GalleryPage implements OnInit {
   deleteAll() {
     // Delete all photos from the gallery page
     this.images = [];
+    this.imageService.clearImages();
   }
 }
