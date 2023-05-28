@@ -33,8 +33,11 @@ export class CameraPage implements OnInit {
     private toastCtrl: ToastController,
     private navCtrl: NavController,
     private router: Router
-    
-  ) { }
+
+
+  ) {
+    this.favorites = [];
+  }
 
   async ngOnInit() {
     this.loadFiles();
@@ -259,25 +262,25 @@ export class CameraPage implements OnInit {
       directory: Directory.Data,
       path: file.path
     });
-    
+
     // Remove the image from the images array
     const index = this.images.findIndex((image) => image.name === file.name);
     if (index !== -1) {
       this.images.splice(index, 1);
     }
-  
+
     this.presentToast('File removed.');
-  
+
     // Check if the file is in the favorites
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     const updatedFavorites = favorites.filter((favorite: LocalFile) => favorite.name !== file.name);
-  
+
     // If the favorites list has changed, update the local storage
     if (favorites.length !== updatedFavorites.length) {
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     }
   }
-  
+
 
   goBack() {
     this.navCtrl.back();
@@ -294,7 +297,7 @@ export class CameraPage implements OnInit {
   // Add a photo to favorites or remove it if already a favorite
   async addToFavorites(file: LocalFile) {
     const index = this.favorites.findIndex((favorite) => favorite.name === file.name);
-
+  
     if (index !== -1) {
       // File already exists in favorites, remove it
       this.favorites.splice(index, 1);
@@ -302,7 +305,7 @@ export class CameraPage implements OnInit {
       // File does not exist in favorites, add it
       this.favorites.push(file);
     }
-
+  
     // Update the local storage with the updated favorites array
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
@@ -310,7 +313,7 @@ export class CameraPage implements OnInit {
     this.navCtrl.navigateForward('/favorites');
   }
 
-  goToHomePage(){
+  goToHomePage() {
     this.navCtrl.navigateForward('/home');
   }
 } 

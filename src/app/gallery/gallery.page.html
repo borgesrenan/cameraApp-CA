@@ -11,9 +11,28 @@
   <div class="photo-grid">
     <div class="photo-grid__row">
       <div class="photo-grid__col" *ngFor="let image of images">
-        <ion-thumbnail>
-          <ion-img [src]="image.data"></ion-img>
-        </ion-thumbnail>
+        <div class="image-container">
+          <ion-thumbnail>
+            <ion-img [src]="image.data"></ion-img>
+          </ion-thumbnail>
+          <div class="photo-details">
+            <ion-item>
+              <ion-label position="floating">
+                <ion-icon name="pin"></ion-icon>
+                Location
+              </ion-label>
+              <ion-input [(ngModel)]="image.location"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">
+                <ion-icon name="create"></ion-icon>
+                Description
+              </ion-label>
+              <ion-textarea [(ngModel)]="image.description"></ion-textarea>
+            </ion-item>
+          </div>
+        </div>
       </div>
     </div>
   </div>

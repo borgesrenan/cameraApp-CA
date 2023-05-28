@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./gallery.page.scss'],
 })
 export class GalleryPage implements OnInit {
-  images: any[] = [];
+  images: { data: string; location: string; description: string; }[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
