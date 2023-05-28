@@ -328,4 +328,5 @@ export class CameraPage implements OnInit {
   goToHomePage() {
     this.navCtrl.navigateForward('/home');
   }
+  
 } 
