@@ -6,32 +6,48 @@
     <ion-title class="header-title">Favorites</ion-title>
   </ion-toolbar>
 </ion-header>
-
-<ion-content class="ion-padding">
-  <div class="grid-container">
-    <ion-grid class="photo-grid">
-      <ion-row class="ion-align-items-stretch">
-        <ng-container *ngFor="let file of favoriteImages">
-          <ion-col size="6" size-md="4" size-lg="3" class="photo-col">
+<ion-content>
+  <div class="photo-grid">
+    <div class="photo-grid__row">
+      <div class="photo-grid__col" *ngFor="let file of favoriteImages">
+        <div class="image-container">
+          <ion-thumbnail>
             <ion-item class="photo-item">
               <ion-img [src]="file.data" class="photo-img"></ion-img>
             </ion-item>
-          </ion-col>
-        </ng-container>
-      </ion-row>
-    </ion-grid>
+          </ion-thumbnail>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>
-
 <ion-footer>
-  <ion-toolbar>
-    <ion-button expand="full" color="danger" (click)="deleteAllImages()">
-      <ion-icon name="trash"></ion-icon>
-      Delete All Images
-    </ion-button>
-    <ion-button expand="full" color="secondary" (click)="goBack()">
-      <ion-icon name="home"></ion-icon>
-      Home Page
-    </ion-button>
+  <ion-toolbar color="dark">
+    <ion-row class="button-row">
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="danger" (click)="deleteAllImages()" class="favorites-button">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Delete All Images
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="tertiary" (click)="takePhoto()" class="favorites-button">
+          <ion-icon slot="start" name="camera" color="light"></ion-icon>
+          Take Photo
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="tertiary" (click)="openGallery()" class="favorites-button">
+          <ion-icon slot="start" name="images"></ion-icon>
+          Open Gallery
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="tertiary" (click)="goBack()" class="favorites-button">
+          <ion-icon slot="start" name="home"></ion-icon>
+          Home Page
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>

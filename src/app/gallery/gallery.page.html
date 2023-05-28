@@ -39,14 +39,32 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <ion-button expand="full" color="danger" (click)="deleteAll()">
-      <ion-icon name="trash"></ion-icon>
-      Delete All Images
-    </ion-button>
-    <ion-button expand="full" color="secondary" (click)="goBack()">
-      <ion-icon name="home"></ion-icon>
-      Home Page
-    </ion-button>
+  <ion-toolbar color="dark">
+    <ion-row class="button-row">
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="danger" (click)="deleteAll()" class="favorites-button">
+          <ion-icon slot="start" name="trash"></ion-icon>
+          Delete All Images
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="tertiary" (click)="takePhoto()" class="favorites-button">
+          <ion-icon slot="start" name="camera" color="light"></ion-icon>
+          Take Photo
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="tertiary" (click)="openFavorites()" class="favorites-button">
+          <ion-icon slot="start" name="heart" color="danger"></ion-icon>
+          Open Favorites
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-sm="6" size-md="3" class="button-col">
+        <ion-button fill="solid" expand="full" color="tertiary" (click)="goBack()" class="favorites-button">
+          <ion-icon slot="start" name="home"></ion-icon>
+          Home Page
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-footer>

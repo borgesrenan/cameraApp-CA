@@ -56,4 +56,12 @@ export class FavoritesPage {
   goBack() {
     this.router.navigateByUrl('/home');
   }
+
+  takePhoto() {
+    this.router.navigateByUrl('/camera');
+  }
+  
+  openGallery() {
+    this.router.navigateByUrl('/gallery');
+  }
 }

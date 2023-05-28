@@ -1,7 +1,7 @@
 /* Global styles */
 * {
   box-sizing: border-box;
-  margin: 0;
+  margin: 1;
   padding: 0;
 }
 
@@ -24,7 +24,7 @@ body {
 }
 
 .gallery-icon {
- font-size: 30px;
+  font-size: 30px;
   margin-right: 8px;
 }
 
@@ -83,13 +83,32 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Footer styles */
+/* Buttons */
+
 ion-footer {
-  padding: 1rem;
+  ion-toolbar {
+    ion-row.button-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      ion-col.button-col {
+        ion-button {
+          border-radius: 30px;
+          --padding-start: 8px;
+          --padding-end: 8px;
+          --padding-top: 4px;
+          --padding-bottom: 4px;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 
-ion-button {
-  margin-top: 0.5rem;
+ion-content {
+  --background: #ffffff;
 }
 
 /* Responsive styles */

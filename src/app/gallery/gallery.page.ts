@@ -27,11 +27,16 @@ export class GalleryPage implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  openFavorites() {
+    this.router.navigateByUrl('/favorites');
+  }
+
+  takePhoto() {
+    this.router.navigateByUrl('/camera');
+  }
+
   deleteAll() {
     // Delete all photos from the gallery page
     this.images = [];
-
-    // Delete all photos from the camera page
-    // Call the appropriate method/function in your camera page to delete the photos
   }
 }
