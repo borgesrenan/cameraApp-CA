@@ -284,14 +284,14 @@ export class CameraPage implements OnInit {
     this.presentToast('File removed.');
 
     // Check if the file is in the favorites
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
-    const updatedFavorites = favorites.filter((favorite: LocalFile) => favorite.name !== file.name);
+  const updatedFavorites = this.favorites.filter((favorite: LocalFile) => favorite.name !== file.name);
 
-    // If the favorites list has changed, update the local storage
-    if (favorites.length !== updatedFavorites.length) {
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
-    }
+  // If the favorites list has changed, update the local storage
+  if (this.favorites.length !== updatedFavorites.length) {
+    this.favorites = updatedFavorites;
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   }
+}
 
 
   goBack() {
